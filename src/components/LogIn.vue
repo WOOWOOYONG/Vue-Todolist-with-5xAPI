@@ -3,10 +3,10 @@
     <form>
       <div class="mb-5">
         <label for="loginEmail"
-          ><p class="text-left mb-3">Email:</p>
+          ><p class="labeltxt">Email:</p>
           <input
             type="email"
-            class="border-2 w-full indent-2 rounded py-2"
+            class="w-full rounded border-2 py-2 indent-2"
             placeholder="請輸入Email"
             name="loginEmail"
             v-model.trim="loginEmail"
@@ -17,10 +17,10 @@
 
       <div class="mb-6">
         <label for="loginPassword"
-          ><p class="text-left mb-3">密碼:</p>
+          ><p class="labeltxt">密碼:</p>
           <input
             type="password"
-            class="border-2 w-full indent-2 rounded py-2"
+            class="w-full rounded border-2 py-2 indent-2"
             placeholder="請輸入密碼"
             name="loginPassword"
             v-model.trim="loginPassword"
@@ -31,7 +31,7 @@
       <div class="px-8">
         <button
           type="button"
-          class="block text-center w-full bg-green-300 py-2 mb-5 rounded"
+          class="mb-5 block w-full rounded bg-green-300 py-2 text-center"
           @click="handleLogin"
         >
           登入
@@ -43,6 +43,7 @@
 
 <script>
 import { logIn } from '@/api';
+import { loginSuccess, checkInputAlert } from '@/alert';
 
 export default {
   name: 'Log-in',
@@ -59,7 +60,6 @@ export default {
     },
     handleLogin() {
       if (this.loginEmail && this.loginPassword) {
-        console.log('login');
         const account = {
           user: {
             email: this.loginEmail,
@@ -68,7 +68,7 @@ export default {
         };
         logIn(account)
           .then((res) => {
-            console.log(res);
+            loginSuccess(res.data.message);
             localStorage.setItem('userToken', res.headers.authorization);
             localStorage.setItem('userNickname', res.data.nickname);
             this.resetForm();
@@ -78,7 +78,7 @@ export default {
             console.log(err);
           });
       } else {
-        console.log('error');
+        checkInputAlert();
       }
     },
   },

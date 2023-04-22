@@ -12,5 +12,5 @@ import './assets/index.css';
 
 /* add icons to the library */
 library.add(faRectangleXmark);
-
-createApp(App).use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app');
+const app = createApp(App);
+app.use(router).component('font-awesome-icon', FontAwesomeIcon).mount('#app');

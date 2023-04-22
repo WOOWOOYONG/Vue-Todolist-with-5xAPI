@@ -7,5 +7,5 @@ module.exports = {
     },
     extend: {},
   },
-  plugins: [require('prettier-plugin-tailwindcss')],
+  plugins: ['prettier-plugin-tailwindcss'],
 };

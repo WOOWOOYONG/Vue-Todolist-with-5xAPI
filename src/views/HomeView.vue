@@ -1,12 +1,12 @@
 <template>
-  <div class="home max-w-[1920px] mx-auto">
-    <h1 class="mb-10 text-2xl">歡迎來到你的待辦清單</h1>
+  <div class="home mx-auto max-w-[1920px]">
+    <h1 class="mb-20 text-3xl font-bold">歡迎來到你的待辦清單</h1>
     <div class="flex justify-center gap-4">
       <div class="max-w-[20%]">
         <img
           src="https://i.pinimg.com/originals/73/e4/26/73e4261f0cf991cdca702c53bba90597.gif"
-          alt=""
-          class="max-w-full h-auto"
+          alt="cover"
+          class="h-auto max-w-full rounded-xl"
         />
       </div>
       <div class="w-1/6">

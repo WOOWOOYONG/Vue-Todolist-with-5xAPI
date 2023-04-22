@@ -38,7 +38,7 @@
           <li v-for="todo in filterTodolist" :key="todo.id" class="mb-3 flex items-center">
             <label
               for="todoItem"
-              class="flex w-full cursor-pointer items-center justify-between p-1 hover:bg-slate-100"
+              class="flex w-full cursor-pointer items-center p-1 hover:bg-slate-100"
             >
               <input
                 type="checkbox"
@@ -51,14 +51,15 @@
               <span :class="todo.completed_at === null ? '' : 'line-through'" class="text-xl">{{
                 todo.content
               }}</span>
+            </label>
+            <button :data-id="todo.id" @click="handleDelTodo">
               <font-awesome-icon
                 :icon="['far', 'rectangle-xmark']"
                 :data-id="todo.id"
-                @click="handleDelTodo"
                 class="cursor-pointer hover:scale-110 hover:bg-amber-200"
                 size="lg"
               />
-            </label>
+            </button>
           </li>
         </ul>
       </div>
@@ -78,6 +79,14 @@
 
 <script>
 import { getTodo, addTodo, delTodo, delAllTodo, toggleTodo } from '@/api';
+import {
+  addTodoSuccess,
+  delTodoSuccess,
+  togTodoSuccess,
+  delAllTodoConfirm,
+  delAllTodoFailed,
+  checkInputAlert,
+} from '@/alert';
 import LogOutBtn from './LogOutBtn.vue';
 
 export default {
@@ -107,7 +116,6 @@ export default {
     getTodoList() {
       getTodo(this.config)
         .then((res) => {
-          console.log(res);
           this.todos = res.data.todos;
           this.countUndone();
         })
@@ -120,8 +128,8 @@ export default {
         },
       };
       addTodo(newTodo, this.config)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          addTodoSuccess();
           this.getTodoList();
           this.newTodo = '';
         })
@@ -131,14 +139,17 @@ export default {
       if (this.newTodo && this.config) {
         this.addTodoList();
       } else {
-        console.log('error');
+        checkInputAlert();
       }
     },
     handleDelTodo(e) {
       const todoId = e.target.dataset.id;
+      if (!todoId) {
+        return;
+      }
       delTodo(todoId, this.config)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          delTodoSuccess();
           this.getTodoList();
         })
         .catch((err) => console.log(err));
@@ -146,16 +157,19 @@ export default {
     handleDelAllTodo() {
       const doneTodos = this.todos.filter((todo) => todo.completed_at !== null);
       if (doneTodos.length > 0) {
-        delAllTodo(doneTodos, this.config, this.getTodoList);
+        const delfn = () => {
+          delAllTodo(doneTodos, this.config, this.getTodoList);
+        };
+        delAllTodoConfirm(delfn);
       } else {
-        console.log('目前沒有完成事項');
+        delAllTodoFailed();
       }
     },
     handleToggleTodo(e) {
       const todoId = e.target.dataset.id;
       toggleTodo(todoId, this.config)
-        .then((res) => {
-          console.log(res);
+        .then(() => {
+          togTodoSuccess();
           this.getTodoList();
           this.countUndone();
         })
@@ -163,7 +177,6 @@ export default {
     },
     countUndone() {
       const undoneArr = this.todos.filter((item) => item.completed_at === null);
-      console.log(undoneArr);
       this.undoneNum = undoneArr.length;
     },
     changeTodoState(val) {

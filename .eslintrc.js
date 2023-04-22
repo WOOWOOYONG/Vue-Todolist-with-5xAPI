@@ -12,5 +12,4 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'object-curly-newline': 'off',
   },
-  'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
 };

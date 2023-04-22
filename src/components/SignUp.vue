@@ -3,10 +3,10 @@
     <form class="loginForm">
       <div class="mb-5">
         <label for="signUpEmail"
-          ><p class="text-left mb-3">Email:</p>
+          ><p class="labeltxt">Email:</p>
           <input
             type="email"
-            class="border-2 w-full indent-2 rounded py-2"
+            class="w-full rounded border-2 py-2 indent-2"
             placeholder="請輸入Email"
             name="signUpEmail"
             v-model.trim="signUpEmail"
@@ -16,10 +16,10 @@
       </div>
       <div class="mb-5">
         <label for="nickName"
-          ><p class="text-left mb-3">暱稱:</p>
+          ><p class="labeltxt">暱稱:</p>
           <input
             type="text"
-            class="border-2 w-full indent-2 rounded py-2"
+            class="w-full rounded border-2 py-2 indent-2"
             placeholder="請輸入暱稱"
             name="nickName"
             v-model.trim="nickName"
@@ -29,10 +29,10 @@
       </div>
       <div class="mb-5">
         <label for="signUpPassword">
-          <p class="text-left mb-3">密碼:</p>
+          <p class="labeltxt">密碼:</p>
           <input
             type="password"
-            class="border-2 w-full indent-2 rounded py-2"
+            class="w-full rounded border-2 py-2 indent-2"
             placeholder="請輸入密碼"
             name="signUpPassword"
             v-model.trim="signUpPassWord"
@@ -41,10 +41,10 @@
       </div>
       <div class="mb-8">
         <label for="confirmPassword"
-          ><p class="text-left mb-3">再次輸入密碼:</p>
+          ><p class="labeltxt">再次輸入密碼:</p>
           <input
             type="password"
-            class="border-2 w-full indent-2 rounded py-2"
+            class="w-full rounded border-2 py-2 indent-2"
             placeholder="請再次輸入密碼"
             name="confirmPassword"
             v-model.trim="confirmPassword"
@@ -55,7 +55,7 @@
       <div class="px-8">
         <button
           type="button"
-          class="block text-center w-full bg-green-300 py-2 mb-5 rounded"
+          class="mb-5 block w-full rounded bg-green-300 py-2 text-center"
           @click="handleSignUp"
         >
           註冊
@@ -67,6 +67,7 @@
 
 <script>
 import { signUp } from '@/api';
+import { signUpSuccess, checkInputAlert } from '@/alert';
 
 export default {
   name: 'Sign-Up',
@@ -98,13 +99,13 @@ export default {
         };
         signUp(newUser)
           .then((res) => {
-            console.log(res);
+            signUpSuccess(res.data.message);
             this.resetForm();
             this.moveToLogin();
           })
           .catch((err) => console.log(err));
       } else {
-        console.log('error');
+        checkInputAlert();
       }
     },
     moveToLogin() {

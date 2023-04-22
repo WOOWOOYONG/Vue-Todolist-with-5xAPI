@@ -6,4 +6,7 @@
   .active {
     @apply bg-green-600 text-white;
   }
+  .labeltxt {
+    @apply mb-3 text-left text-xl;
+  }
 }
