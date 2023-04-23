@@ -1,5 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import TodoView from '../views/TodoView.vue';
 
 const routes = [
   {
@@ -7,18 +8,15 @@ const routes = [
     name: 'home',
     component: HomeView,
     meta: {
-      title: '首頁',
+      title: 'MyTodoList-首頁',
     },
   },
   {
     path: '/todo',
     name: 'todo',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/TodoView.vue'),
+    component: TodoView,
     meta: {
-      title: '待辦事項',
+      title: 'MyTodoList-待辦事項',
       requiresAuth: true,
     },
   },
