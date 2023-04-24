@@ -1,15 +1,17 @@
 <template>
   <div class="home mx-auto max-w-[1920px]">
     <h1 class="mb-20 text-3xl font-bold">歡迎來到你的待辦清單</h1>
-    <div class="flex justify-center gap-4">
-      <div class="max-w-[20%]">
+    <div
+      class="mx-auto flex max-w-[80%] flex-col items-center justify-center gap-2 md:flex-row md:items-start md:gap-6 lg:max-w-[40%]"
+    >
+      <div class="w-full md:w-[50%]">
         <img
           src="https://i.pinimg.com/originals/73/e4/26/73e4261f0cf991cdca702c53bba90597.gif"
           alt="cover"
           class="h-auto max-w-full rounded-xl"
         />
       </div>
-      <div class="w-1/6">
+      <div class="w-full md:w-[50%]">
         <div v-if="showLogin">
           <LogIn />
         </div>

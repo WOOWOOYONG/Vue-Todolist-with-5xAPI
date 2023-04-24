@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-auto max-w-[30%] text-lg">
+  <div class="mx-auto px-3 text-lg md:max-w-[80%] lg:max-w-[30%]">
     <h1 class="mb-10 text-xl">哈囉 {{ nickName }}～ 來做點事吧</h1>
     <div class="mb-5 flex justify-center">
       <label for="todoInput">
@@ -56,7 +56,7 @@
               <font-awesome-icon
                 :icon="['far', 'rectangle-xmark']"
                 :data-id="todo.id"
-                class="cursor-pointer hover:scale-110 hover:bg-amber-200"
+                class="cursor-pointer hover:scale-110 hover:text-red-400"
                 size="lg"
               />
             </button>

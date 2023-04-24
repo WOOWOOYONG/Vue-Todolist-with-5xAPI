@@ -1,8 +1,8 @@
 <template>
-  <div class="absolute top-10 right-48">
+  <div class="absolute right-8 top-10">
     <button
       @click="handleLogout"
-      class="bg-blue-900 py-1 px-2 rounded text-white hover:bg-blue-600"
+      class="rounded bg-blue-900 px-2 py-1 text-white hover:bg-blue-600"
     >
       登出
     </button>
