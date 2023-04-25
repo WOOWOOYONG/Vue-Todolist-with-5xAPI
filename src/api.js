@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { successAlert, logoutSuccess } from './alert';
+import { logoutSuccess } from './alert';
 
 const url = 'https://todoo.5xcamp.us';
 const signUp = (newUser) => axios.post(`${url}/users`, newUser);
@@ -25,21 +25,21 @@ const getTodo = (config) => axios.get(`${url}/todos`, config);
 const addTodo = (todo, config) => axios.post(`${url}/todos`, todo, config);
 const delTodo = (todoId, config) => axios.delete(`${url}/todos/${todoId}`, config);
 const toggleTodo = (todoId, config) => axios.patch(`${url}/todos/${todoId}/toggle`, {}, config);
-const delAllTodo = (doneTodos, config, fn) => {
-  let count = 0;
-  doneTodos.forEach((todo) => {
-    delTodo(todo.id, config)
-      .then(() => {
-        count += 1;
-        if (count === doneTodos.length) {
-          successAlert();
-          fn();
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-};
+// const delAllTodo = (doneTodos, config, fn) => {
+//   let count = 0;
+//   doneTodos.forEach((todo) => {
+//     delTodo(todo.id, config)
+//       .then(() => {
+//         count += 1;
+//         if (count === doneTodos.length) {
+//           successAlert();
+//           fn();
+//         }
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//       });
+//   });
+// };
 
-export { signUp, logIn, logOut, getTodo, addTodo, delTodo, delAllTodo, toggleTodo };
+export { signUp, logIn, logOut, getTodo, addTodo, delTodo, toggleTodo };

@@ -65,12 +65,12 @@
       </div>
       <div class="flex items-center justify-between border-t-2 pt-4">
         <p>目前還有{{ undoneNum }}件待完成</p>
-        <button
+        <!-- <button
           @click="handleDelAllTodo"
           class="rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-600"
         >
           清除已完成事項
-        </button>
+        </button> -->
       </div>
     </div>
     <LogOutBtn :config="config" />
@@ -78,15 +78,8 @@
 </template>
 
 <script>
-import { getTodo, addTodo, delTodo, delAllTodo, toggleTodo } from '@/api';
-import {
-  addTodoSuccess,
-  delTodoSuccess,
-  togTodoSuccess,
-  delAllTodoConfirm,
-  delAllTodoFailed,
-  checkInputAlert,
-} from '@/alert';
+import { getTodo, addTodo, delTodo, toggleTodo } from '@/api';
+import { addTodoSuccess, delTodoSuccess, togTodoSuccess, checkInputAlert } from '@/alert';
 import LogOutBtn from './LogOutBtn.vue';
 
 export default {
@@ -154,17 +147,17 @@ export default {
         })
         .catch((err) => console.log(err));
     },
-    handleDelAllTodo() {
-      const doneTodos = this.todos.filter((todo) => todo.completed_at !== null);
-      if (doneTodos.length > 0) {
-        const delfn = () => {
-          delAllTodo(doneTodos, this.config, this.getTodoList);
-        };
-        delAllTodoConfirm(delfn);
-      } else {
-        delAllTodoFailed();
-      }
-    },
+    // handleDelAllTodo() {
+    //   const doneTodos = this.todos.filter((todo) => todo.completed_at !== null);
+    //   if (doneTodos.length > 0) {
+    //     const delfn = () => {
+    //       delAllTodo(doneTodos, this.config, this.getTodoList);
+    //     };
+    //     delAllTodoConfirm(delfn);
+    //   } else {
+    //     delAllTodoFailed();
+    //   }
+    // },
     handleToggleTodo(e) {
       const todoId = e.target.dataset.id;
       toggleTodo(todoId, this.config)

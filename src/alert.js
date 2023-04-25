@@ -74,9 +74,9 @@ const delAllTodoConfirm = (fn) => {
   });
 };
 
-const successAlert = () => {
-  Swal.fire('刪除成功', '已清除所有已完成事項', 'success');
-};
+// const successAlert = () => {
+//   Swal.fire('刪除成功', '已清除所有已完成事項', 'success');
+// };
 
 const checkInputAlert = () => {
   Swal.fire('錯誤！', '請先填寫正確資料', 'error');
@@ -94,7 +94,6 @@ export {
   togTodoSuccess,
   logoutSuccess,
   delAllTodoConfirm,
-  successAlert,
   checkInputAlert,
   delAllTodoFailed,
 };
