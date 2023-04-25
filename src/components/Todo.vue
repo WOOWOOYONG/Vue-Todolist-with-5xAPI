@@ -38,7 +38,7 @@
           <li v-for="todo in filterTodolist" :key="todo.id" class="mb-3 flex items-center">
             <label
               for="todoItem"
-              class="flex w-full cursor-pointer items-center p-1 hover:bg-slate-100"
+              class="flex w-full cursor-pointer items-center p-1 hover:bg-slate-200"
             >
               <input
                 type="checkbox"
@@ -67,7 +67,7 @@
         <p>目前還有{{ undoneNum }}件待完成</p>
         <button
           @click="handleDelAllTodo"
-          class="rounded bg-orange-400 px-2 py-1 font-bold text-white hover:bg-orange-600"
+          class="rounded bg-orange-400 px-2 py-1 text-white hover:bg-orange-600"
         >
           清除已完成事項
         </button>
