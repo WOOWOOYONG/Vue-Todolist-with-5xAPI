@@ -86,6 +86,10 @@ const delAllTodoFailed = () => {
   Swal.fire('錯誤！', '目前沒有完成事項', 'error');
 };
 
+const errorAlert = (msg = '有地方出錯了！？') => {
+  Swal.fire('錯誤', msg, 'error');
+};
+
 export {
   loginSuccess,
   signUpSuccess,
@@ -96,4 +100,5 @@ export {
   delAllTodoConfirm,
   checkInputAlert,
   delAllTodoFailed,
+  errorAlert,
 };

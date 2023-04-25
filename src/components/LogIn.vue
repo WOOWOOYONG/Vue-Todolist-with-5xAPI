@@ -43,10 +43,10 @@
 
 <script>
 import { logIn } from '@/api';
-import { loginSuccess, checkInputAlert } from '@/alert';
+import { loginSuccess, checkInputAlert, errorAlert } from '@/alert';
 
 export default {
-  name: 'Log-in',
+  name: 'Log-In',
   data() {
     return {
       loginEmail: '',
@@ -75,7 +75,7 @@ export default {
             this.$router.push({ name: 'todo' });
           })
           .catch((err) => {
-            console.log(err);
+            errorAlert(err.response.data.message);
           });
       } else {
         checkInputAlert();

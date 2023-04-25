@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { logoutSuccess } from './alert';
+import { logoutSuccess, errorAlert } from './alert';
 
 const url = 'https://todoo.5xcamp.us';
 const signUp = (newUser) => axios.post(`${url}/users`, newUser);
@@ -15,9 +15,7 @@ const logOut = (config, redirect) => {
         redirect();
       }
     })
-    .catch((err) => {
-      console.log(err);
-    });
+    .catch((err) => errorAlert(err.response.data.message));
 };
 
 // 待辦

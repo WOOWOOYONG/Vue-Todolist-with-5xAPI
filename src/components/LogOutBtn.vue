@@ -19,7 +19,6 @@ export default {
       this.$router.push({ name: 'home' });
     },
     handleLogout() {
-      console.log(this.config);
       logOut(this.config, this.redirectHome);
     },
   },

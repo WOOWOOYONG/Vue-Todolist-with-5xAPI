@@ -79,12 +79,18 @@
 
 <script>
 import { getTodo, addTodo, delTodo, toggleTodo } from '@/api';
-import { addTodoSuccess, delTodoSuccess, togTodoSuccess, checkInputAlert } from '@/alert';
+import {
+  addTodoSuccess,
+  delTodoSuccess,
+  togTodoSuccess,
+  checkInputAlert,
+  errorAlert,
+} from '@/alert';
 import LogOutBtn from './LogOutBtn.vue';
 
 export default {
   components: { LogOutBtn },
-  name: 'Todo-list',
+  name: 'Todo-List',
   data() {
     return {
       token: '',
@@ -112,7 +118,7 @@ export default {
           this.todos = res.data.todos;
           this.countUndone();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => errorAlert(err.response.data.message));
     },
     addTodoList() {
       const newTodo = {
@@ -126,7 +132,7 @@ export default {
           this.getTodoList();
           this.newTodo = '';
         })
-        .catch((err) => console.log(err));
+        .catch((err) => errorAlert(err.response.data.message));
     },
     handleAddTodo() {
       if (this.newTodo && this.config) {
@@ -145,7 +151,7 @@ export default {
           delTodoSuccess();
           this.getTodoList();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => errorAlert(err.response.data.message));
     },
     // handleDelAllTodo() {
     //   const doneTodos = this.todos.filter((todo) => todo.completed_at !== null);
@@ -166,7 +172,7 @@ export default {
           this.getTodoList();
           this.countUndone();
         })
-        .catch((err) => console.log(err));
+        .catch((err) => errorAlert(err.response.data.message));
     },
     countUndone() {
       const undoneArr = this.todos.filter((item) => item.completed_at === null);

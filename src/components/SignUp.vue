@@ -67,7 +67,7 @@
 
 <script>
 import { signUp } from '@/api';
-import { signUpSuccess, checkInputAlert } from '@/alert';
+import { signUpSuccess, checkInputAlert, errorAlert } from '@/alert';
 
 export default {
   name: 'Sign-Up',
@@ -103,7 +103,7 @@ export default {
             this.resetForm();
             this.moveToLogin();
           })
-          .catch((err) => console.log(err));
+          .catch((err) => errorAlert(err.response.data.message));
       } else {
         checkInputAlert();
       }
