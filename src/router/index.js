@@ -27,15 +27,14 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   const token = localStorage.getItem('userToken');
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
 
   if (requiresAuth && !token) {
-    next('/');
-  } else {
-    next();
+    return { name: 'home' };
   }
+  return { name: 'todo' };
 });
 
 router.beforeEach((to, from, next) => {
